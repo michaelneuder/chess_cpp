@@ -1,7 +1,6 @@
 #ifndef CHESS_H
 #define CHESS_H
 
-
 struct pieceData{
 	int rowLocation;
 	int columnLocation;
@@ -25,7 +24,6 @@ class piece{
 		void capture();
 		void setLocation();
 		void promote();
-
 };
 
 
