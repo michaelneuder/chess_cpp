@@ -51,7 +51,6 @@ void userInput(board myBoard){
 
             case 3:
             	{
-            		myBoard.setBoard();
             		cout <<"this action will delete current board state. \nare you sure you want to continue? (y/n)" << endl;
             		string answer;
             		getline(cin, answer);
