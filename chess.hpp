@@ -10,11 +10,12 @@ struct pieceData{
 class board{
 	public:
 		const int dimension = 8;
-		int squares[dimension][dimension];
+		pieceData squares[dimension][dimension];
 		void defaultBoard();
 		void setBoard();
 		void clearBoard();
 		void printBoard();
+		void writeToFile();
 };
 
 class piece{
