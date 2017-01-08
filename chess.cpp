@@ -9,22 +9,22 @@
 #include "chess.hpp"
 using namespace std;
 
-board::defaultBoard(){
-	for(int i=0; i<dimension; i++){
+void board::defaultBoard(){
+	for(int i=0; i<8; i++){
 		squares[1][i].rowLocation = 1;
 		squares[1][i].columnLocation = i;
 		squares[1][i].pieceType = "pawn";
 	}
 }
 
-board::setBoard(){}
-board::clearBoard(){}
-board::printBoard(){}
-board::writeToFile(){}
+void board::setBoard(){}
+void board::clearBoard(){}
+void board::printBoard(){}
+void board::writeToFile(){}
 
-piece::move(){}
-piece::capture(){}
-piece::setLocation(){}
-piece::promote(){}
+void piece::move(){}
+void piece::capture(){}
+void piece::setLocation(){}
+void piece::promote(){}
 
 

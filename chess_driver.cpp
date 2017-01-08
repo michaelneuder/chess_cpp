@@ -9,6 +9,7 @@
 #include <fstream>
 #include <sstream>
 #include "chess.hpp"
+using namespace std;
 
 void displayMenu(){
 	cout << "======Main Menu======" << endl;
@@ -82,7 +83,7 @@ void userInput(board myBoard){
 }
 
 
-int main{
+int main(){
 	board myBoard;
 	userInput(myBoard);
 

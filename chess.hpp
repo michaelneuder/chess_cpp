@@ -4,13 +4,12 @@
 struct pieceData{
 	int rowLocation;
 	int columnLocation;
-	string pieceType;
+	std::string pieceType;
 };
 
 class board{
 	public:
-		const int dimension = 8;
-		pieceData squares[dimension][dimension];
+		pieceData squares[8][8];
 		void defaultBoard();
 		void setBoard();
 		void clearBoard();
