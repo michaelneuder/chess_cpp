@@ -52,7 +52,19 @@ void userInput(board myBoard){
             case 3:
             	{
             		myBoard.setBoard();
-                	break;
+            		cout <<"this action will delete current board state. \nare you sure you want to continue? (y/n)" << endl;
+            		string answer;
+            		getline(cin, answer);
+            		if (answer=="n"){
+            			break;
+            		}
+            		else if (answer=="y"){
+            			myBoard.setBoard();
+                		break;
+            		}
+            		else{
+            			cout << "invalid input" << endl;
+            		}
            		}
 
             case 4:

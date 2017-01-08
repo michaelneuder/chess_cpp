@@ -18,6 +18,18 @@ int main(){
 		}
 		cout << endl;
 	} 
+	cout << endl << endl;
+	for(int m=0;m<dimension;m++){
+		myBoard[1][m]=1;
+		myBoard[6][m]=1;
+	}
+
+	for(int k=0; k<dimension; k++){
+		for(int l=0; l<dimension; l++){
+			cout << myBoard[k][l] << "   ";
+		}
+		cout << endl << endl;
+	} 
 
 
 } 

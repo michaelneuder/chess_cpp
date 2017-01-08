@@ -5,6 +5,7 @@ struct pieceData{
 	int rowLocation;
 	int columnLocation;
 	std::string pieceType;
+	int pieceColor; //0=white, 1=black, 2=no piece
 };
 
 class board{
@@ -25,23 +26,6 @@ class piece{
 		void setLocation();
 		void promote();
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #endif // CHESS_H
