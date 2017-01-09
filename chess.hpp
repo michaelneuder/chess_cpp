@@ -6,6 +6,7 @@ struct pieceData{
 	int columnLocation;
 	std::string pieceType;
 	int pieceColor; //0=white, 1=black, 2=no piece
+	int pieceID;
 };
 
 class board{
