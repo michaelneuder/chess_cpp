@@ -9,6 +9,23 @@
 #include "chess.hpp"
 using namespace std;
 
+bool board::verifyAction(){
+	cout << "this action will delete current board state. this action can not be taken back\nare you sure you want to continue? (y/n)" << endl;
+    string answer;
+    getline(cin, answer);
+    while(answer != "y" and answer!= "n"){
+    	cout << "invalid input, please type 'y' or 'n'" << endl;
+    	getline(cin, answer);
+    }
+    if (answer=="n"){
+        cout << "board not modified" << endl;
+        return false;
+    }
+    else /* (answer=="y")*/{
+        return true;
+    }
+}
+
 void board::defaultBoard(){
 	for(int i=0; i<8; i++){//initializing pawns
 		squares[1][i].rowLocation = 2;
@@ -21,12 +38,11 @@ void board::defaultBoard(){
 		squares[6][i].pieceType = "p";
 		squares[6][i].pieceColor = 0;
 	}
-	for(int j=0; j<8;j++){//intializing the empty squares to 00
+	for(int j=0; j<8;j++){//intializing the empty squares
 		for(int k=2; k<6;k++){
 			squares[k][j].rowLocation = k+1;
 			squares[k][j].columnLocation = j+1;
-			squares[k][j].pieceType = " ";
-			squares[k][j].pieceColor = 2;
+			squares[k][j].pieceType = "-";
 		}
 	}
 	//initializing rooks
@@ -115,13 +131,93 @@ void board::defaultBoard(){
 	squares[7][4].pieceColor = 0;
 }
 
-void board::setBoard(){}
+void board::setBoard(){ 
+	cout << "board is set starting at square A8-H8 followed by A7-H7 and so forth." << endl;
+	cout << "if no piece occupies a specific square type 0 and return" << endl << endl;
+	//setting the rows
+	setRow(7);
+	setRow(6);
+	setRow(5);
+	setRow(4);
+	setRow(3);
+	setRow(2);
+	setRow(1);
+	setRow(0);
+}
+
+void board::setSquare(int row, int column){
+	//getting piece type
+	string tempType;
+	cout << "enter piece identifier (p,n,b,r,q,k): ";
+	getline(cin, tempType);
+	while (tempType != "p" and tempType != "b" and tempType != "n" and tempType != "r"
+		and tempType != "q" and tempType != "k" and tempType != "0"){
+		cout << "invalid input: please enter a valid piece identified (p,n,b,r,q, or k)" << endl;
+		getline(cin, tempType);
+	}
+	if(tempType == "0"){
+		squares[row][column].pieceType = "-";
+		return;
+	}
+	else{
+		squares[row][column].pieceType = tempType;
+
+		//getting piece color
+		string tempColor;
+		cout << "enter the piece color (w/b): ";
+		getline(cin, tempColor);
+		while(tempColor != "w" and tempColor != "b"){
+			cout << "invalid input: please enter a valid piece color (w/b)" << endl;
+			getline(cin, tempColor);
+		} 
+		if(tempColor == "w"){
+			squares[row][column].pieceColor = 0;
+		}
+		else{
+			squares[row][column].pieceColor = 1;
+		}
+
+		//setting piece location
+		squares[row][column].rowLocation = row;
+		squares[row][column].columnLocation = column;
+	}
+}
+
+void board::setRow(int rowVal){
+	cout << "square a" << rowVal+1 << ": "<< endl;
+	setSquare(rowVal,0);
+	cout << "square b" << rowVal+1 << ": "<< endl;
+	setSquare(rowVal,1);
+	cout << "square c" << rowVal+1 << ": "<< endl;
+	setSquare(rowVal,2);
+	cout << "square d" << rowVal+1 << ": "<< endl;
+	setSquare(rowVal,3);
+	cout << "square e" << rowVal+1 << ": "<< endl;
+	setSquare(rowVal,4);
+	cout << "square f" << rowVal+1 << ": "<< endl;
+	setSquare(rowVal,5);
+	cout << "square g" << rowVal+1 << ": "<< endl;
+	setSquare(rowVal,6);
+	cout << "square h" << rowVal+1 << ": "<< endl;
+	setSquare(rowVal,7);
+}
+
+
+
 void board::clearBoard(){}
 
 void board::printBoard(){
 	for(int i=0; i<8; i++){
 		for(int j=0; j<8; j++){
-			cout << squares[i][j].pieceColor << squares[i][j].pieceType << "   ";
+			if(squares[i][j].pieceType == "-"){
+				cout << "--" << "   ";
+			}
+			else if (squares[i][j].pieceColor == 0){
+				cout << "w" << squares[i][j].pieceType << "   ";
+			}
+			else{
+				cout << "b" << squares[i][j].pieceType << "   "; 
+			}
 		}
 		cout << endl << endl;
 	} 

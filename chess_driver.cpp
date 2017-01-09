@@ -44,26 +44,19 @@ void userInput(board myBoard){
 
             case 2:	
             	{
-            		myBoard.defaultBoard();
-            		cout << "default board set" << endl;
+                    if (myBoard.verifyAction() == true){    
+            		  myBoard.defaultBoard();
+            		  cout << "default board set" << endl;
+                    }
                     break;
             	}
 
             case 3:
             	{
-            		cout <<"this action will delete current board state. \nare you sure you want to continue? (y/n)" << endl;
-            		string answer;
-            		getline(cin, answer);
-            		if (answer=="n"){
-            			break;
-            		}
-            		else if (answer=="y"){
-            			myBoard.setBoard();
-                		break;
-            		}
-            		else{
-            			cout << "invalid input" << endl;
-            		}
+            		if(myBoard.verifyAction()==true){
+                        myBoard.setBoard();
+                    }
+                    break;
            		}
 
             case 4:

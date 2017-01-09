@@ -16,6 +16,9 @@ class board{
 		void clearBoard();
 		void printBoard();
 		void writeToFile();
+		bool verifyAction(); 
+		void setSquare(int row, int column);
+		void setRow(int rowVal);
 };
 
 class piece{
