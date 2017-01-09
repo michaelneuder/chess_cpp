@@ -24,7 +24,7 @@ class board{
 class piece{
 	public:
 		pieceData myPiece;
-		void move();
+		void move(int newRow, int newCol);
 		void capture();
 		void setLocation();
 		void promote();

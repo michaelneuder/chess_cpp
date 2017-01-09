@@ -202,9 +202,13 @@ void board::setRow(int rowVal){
 	setSquare(rowVal,7);
 }
 
-
-
-void board::clearBoard(){}
+void board::clearBoard(){
+	for(int i=0; i<8; i++){
+		for(int j=0; j<8; j++){
+			squares[i][j].pieceType = "-";
+		}
+	} 	
+}
 
 void board::printBoard(){
 	for(int i=0; i<8; i++){
@@ -225,7 +229,9 @@ void board::printBoard(){
 
 void board::writeToFile(){}
 
-void piece::move(){}
+void piece::move(int newRow, int newCol, string pieceType, string pieceColor){
+
+}
 void piece::capture(){}
 void piece::setLocation(){}
 void piece::promote(){}
