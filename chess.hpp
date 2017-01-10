@@ -20,12 +20,13 @@ class board{
 		bool verifyAction(); 
 		void setSquare(int row, int column);
 		void setRow(int rowVal);
+		void move(int oldRow, int oldCol, int newRow, int newCol);
 };
 
 class piece{
 	public:
 		pieceData myPiece;
-		void move(int newRow, int newCol);
+		void move(int oldRow, int oldCol, int newRow, int newCol);
 		void capture();
 		void setLocation();
 		void promote();

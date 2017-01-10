@@ -38,7 +38,17 @@ void userInput(board myBoard){
         {
             case 1:
             	{
-            		//make a move
+                    string x1,x2,y1,y2;
+                    getline(cin, x1);
+                    getline(cin, y1);
+                    getline(cin, x2);
+                    getline(cin, y2);
+                    int ix1,ix2,iy1,iy2;
+                    ix1 = stoi(x1);
+                    ix2 = stoi(x2);
+                    iy1 = stoi(y1);
+                    iy2 = stoi(y2);
+            		myBoard.move(ix1,iy1,ix2,iy2);
             		break;
             	}
 

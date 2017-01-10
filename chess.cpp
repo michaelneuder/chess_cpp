@@ -229,11 +229,27 @@ void board::printBoard(){
 
 void board::writeToFile(){}
 
-void piece::move(int newRow, int newCol, string pieceType, string pieceColor){
-
+void board::move(int oldRow, int oldCol, int newRow, int newCol){
+	pieceData tempPiece = squares[oldRow][oldCol];
+	squares[newRow][newCol] = tempPiece;
+	squares[oldRow][oldCol].pieceType = "-";
 }
+
+
+
 void piece::capture(){}
 void piece::setLocation(){}
 void piece::promote(){}
+
+
+
+
+
+
+
+
+
+
+
 
 
