@@ -82,7 +82,7 @@ void userInput(board myBoard){
 
             case 5:
             	{
-            		myBoard.writeToFile();
+            		myBoard.writeToFile(myBoard.gameRecord);
             		break;
             	}
                 

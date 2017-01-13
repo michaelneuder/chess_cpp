@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "chess.hpp"
 using namespace std;
 
@@ -342,7 +343,12 @@ void board::printBoard(){
 	} 
 }
 
-void board::writeToFile(){
+void board::writeToFile(string gameRecord){
+	ofstream myFile;
+	myFile.open("untitled.txt");
+	myFile.close();
+
+
 
 }
 
@@ -351,27 +357,27 @@ void board::move(int oldRow, int oldCol, int newRow, int newCol){
 	bool makeMove = false;
 	tempPieceType = squares[oldRow][oldCol].pieceType;
 	if(tempPieceType == "p"){
-		if (checkMoveP() == true){
+		if (checkMoveP()){
 			makeMove = true;
 		}
 	}else if (tempPieceType == "n"){
-		if (checkMoveN() == true){
+		if (checkMoveN()){
 			makeMove = true;
 		}
 	}else if (tempPieceType == "b"){
-		if (checkMoveB() == true){
+		if (checkMoveB()){
 			makeMove = true;
 		}
 	}else if (tempPieceType == "r"){
-		if (checkMoveR() == true){
+		if (checkMoveR()){
 			makeMove = true;
 		}
 	}else if (tempPieceType == "q"){
-		if (checkMoveQ() == true){
+		if (checkMoveQ()){
 			makeMove = true;
 		}
 	}else if (tempPieceType == "k"){
-		if (checkMoveK() == true){
+		if (checkMoveK()){
 			makeMove = true;
 		}
 	}else {//no piece type found
@@ -382,6 +388,23 @@ void board::move(int oldRow, int oldCol, int newRow, int newCol){
 		pieceData tempPiece = squares[oldRow][oldCol];
 		squares[newRow][newCol] = tempPiece;
 		squares[oldRow][oldCol].pieceType = "-";
+		if(newCol == 0){//this needs work -- figure out how to append a int onto a string
+			gameRecord =  gameRecord + squares[newRow][newCol].pieceType + "a" + to_string(newRow+1) + " "; 
+		}else if(newCol == 1){
+			gameRecord =  gameRecord + squares[newRow][newCol].pieceType + "b" + to_string(newRow+1) + " "; 
+		}else if(newCol == 2){
+			gameRecord =  gameRecord + squares[newRow][newCol].pieceType + "c" + to_string(newRow+1) + " "; 
+		}else if(newCol == 3){
+			gameRecord =  gameRecord + squares[newRow][newCol].pieceType + "d" + to_string(newRow+1) + " "; 
+		}else if(newCol == 4){
+			gameRecord =  gameRecord + squares[newRow][newCol].pieceType + "e" + to_string(newRow+1) + " "; 
+		}else if(newCol == 5){
+			gameRecord =  gameRecord + squares[newRow][newCol].pieceType + "f" + to_string(newRow+1) + " "; 
+		}else if(newCol == 6){
+			gameRecord =  gameRecord + squares[newRow][newCol].pieceType + "g" + to_string(newRow+1) + " "; 
+		}else if(newCol == 7){
+			gameRecord =  gameRecord + squares[newRow][newCol].pieceType + "h" + to_string(newRow+1) + " "; 
+		}
 	}
 }
 

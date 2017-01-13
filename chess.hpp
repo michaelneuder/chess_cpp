@@ -13,6 +13,7 @@ class board{
 	public:
 		board();//instantiates class and calls defaultBoardNoVerification
 		pieceData squares[8][8];
+		std::string gameRecord;
 		
 		//user options
 		void move(int oldRow, int oldCol, int newRow, int newCol);
@@ -20,7 +21,7 @@ class board{
 		void setBoard();
 		void clearBoard();
 		void printBoard();
-		void writeToFile();
+		void writeToFile(std::string gameRecord);
 		
 		//void setSquare(int row, int column);
 		//void setRow(int rowVal);
