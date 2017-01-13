@@ -227,7 +227,9 @@ void board::printBoard(){
 	} 
 }
 
-void board::writeToFile(){}
+void board::writeToFile(){
+
+}
 
 void board::move(int oldRow, int oldCol, int newRow, int newCol){
 	pieceData tempPiece = squares[oldRow][oldCol];
@@ -235,11 +237,18 @@ void board::move(int oldRow, int oldCol, int newRow, int newCol){
 	squares[oldRow][oldCol].pieceType = "-";
 }
 
-
-
 void piece::capture(){}
+
 void piece::setLocation(){}
-void piece::promote(){}
+
+void board::promote(int promoteColumn){
+	//only called from a pawn movement
+	cout << "enter the new piece type identifier (q,r,b, or n)" << endl;
+	string promotedPiece;
+	getline(cin, promotedPiece);
+	squares[7][promoteColumn].pieceType = promotedPiece;
+}
+
 
 
 

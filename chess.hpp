@@ -21,6 +21,7 @@ class board{
 		void setSquare(int row, int column);
 		void setRow(int rowVal);
 		void move(int oldRow, int oldCol, int newRow, int newCol);
+		void promote(int promoteColumn);
 };
 
 class piece{
@@ -29,7 +30,7 @@ class piece{
 		void move(int oldRow, int oldCol, int newRow, int newCol);
 		void capture();
 		void setLocation();
-		void promote();
+		void promote(int promoteColumn);
 };
 
 
