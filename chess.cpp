@@ -346,6 +346,7 @@ void board::printBoard(){
 void board::writeToFile(string gameRecord){
 	ofstream myFile;
 	myFile.open("untitled.txt");
+	myFile << gameRecord;//likely need to do some string parsing in here with sstream
 	myFile.close();
 
 
