@@ -39,33 +39,38 @@ void userInput(board myBoard){
             case 1:
             	{
                     string x1,x2,y1,y2;
+                    cout << "enter the old row" << endl;
                     getline(cin, x1);
+                    cout << "enter the old column" << endl;
                     getline(cin, y1);
+                    cout << "enter the new row" << endl;
                     getline(cin, x2);
+                    cout << "enter the new column" << endl;
                     getline(cin, y2);
-                    int ix1,ix2,iy1,iy2;
-                    ix1 = stoi(x1);
-                    ix2 = stoi(x2);
-                    iy1 = stoi(y1);
-                    iy2 = stoi(y2);
+
+                    int ix1,ix2,iy1,iy2;//string to int conversion
+                    ix1 = stoi(x1)-1;//subtract one to account for zeroth index 
+                    ix2 = stoi(x2)-1;
+                    iy1 = stoi(y1)-1;
+                    iy2 = stoi(y2)-1;
             		myBoard.move(ix1,iy1,ix2,iy2);
             		break;
             	}
 
             case 2:	
             	{
-                    if (myBoard.verifyAction() == true){    
-            		  myBoard.defaultBoard();
-            		  cout << "default board set" << endl;
-                    }
+                    //if (myBoard.verifyAction() == true){ ill call verify action within default board   
+            		myBoard.defaultBoard();
+            		cout << "default board set" << endl;
+                    //}
                     break;
             	}
 
             case 3:
             	{
-            		if(myBoard.verifyAction()==true){
-                        myBoard.setBoard();
-                    }
+            		//if(myBoard.verifyAction()==true){//ill call verify action within setboard
+                    myBoard.setBoard();
+                    //}
                     break;
            		}
 
@@ -100,7 +105,6 @@ void userInput(board myBoard){
 int main(){
 	board myBoard;
 	userInput(myBoard);
-
 	return 0;
 }
 
