@@ -31,13 +31,13 @@ class board{
 	private:
 		void defaultBoardNoVerification();
 		bool verifyAction();
+		bool checkSquareEmpty(int row, int col);
 		void setSquare(int row, int column);
 		void setRow(int rowVal);
-		bool checkMoveP();
 		void promote(int promoteColumn);
 		
 		bool checkMoveP(int oldRow, int oldCol, int newRow, int newCol);
-		bool checkMoveN();
+		bool checkMoveN(int oldRow, int oldCol, int newRow, int newCol);
 		bool checkMoveB();
 		bool checkMoveR();
 		bool checkMoveQ();

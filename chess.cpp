@@ -15,6 +15,13 @@ board::board(){//constructor initializes the board to starting position
 	cout << "board is set to starting position" << endl;
 }
 
+bool board::checkSquareEmpty(int row, int col){
+	if(squares[row][col].pieceType == "-"){
+		return true;
+	}
+	return false;
+}
+
 bool board::verifyAction(){//allows the user to verify a change that is permanent
 	cout << "this action will delete current board state. this action can not be taken back\nare you sure you want to continue? (y/n)" << endl;
     string answer;
@@ -355,11 +362,11 @@ void board::move(int oldRow, int oldCol, int newRow, int newCol){
 	bool makeMove = false;
 	tempPieceType = squares[oldRow][oldCol].pieceType;
 	if(tempPieceType == "p"){
-		if (checkMoveP()){
+		if (checkMoveP(oldRow, oldCol, newRow, newCol)){
 			makeMove = true;
 		}
 	}else if (tempPieceType == "n"){
-		if (checkMoveN()){
+		if (checkMoveN(oldRow, oldCol, newRow, newCol)){
 			makeMove = true;
 		}
 	}else if (tempPieceType == "b"){
@@ -449,10 +456,29 @@ bool board::checkMoveP(int oldRow, int oldCol, int newRow, int newCol){
 	return true;
 }
 
-void board::capture();//this needs work--similar to move but a capture
+bool board::checkMoveN(int oldRow, int oldCol, int newRow, int newCol){
+	if(checkSquareEmpty(newRow, newCol)){
+		if((newCol == oldCol + 2) and (newRow == oldRow + 1 or newRow == oldRow - 1)){
+			return true;
+		}else if((newCol == oldCol + 1) and (newRow == oldRow + 2 or newRow == oldRow - 2)){
+			return true;
+		}else if((newCol == oldCol - 1) and (newRow == oldRow + 2 or newRow == oldRow - 2)){
+			return true;
+		}else if((newCol == oldCol - 2) and (newRow == oldRow + 1 or newRow == oldRow - 1)){
+			return true;
+		}else{
+			cout << "this is a non legal move for the knight. please enter a valid square." << endl;
+			return false;
+		}
+	}
+	else{
+		cout << "this square is occupied! if you want to make a capture call the capture function." << endl;
+		return false;
+	}
+}
 
+void board::capture(){}//this needs work--similar to move but a capture
 
-bool board::checkMoveN(){return true;}
 bool board::checkMoveB(){return true;}
 bool board::checkMoveR(){return true;}
 bool board::checkMoveQ(){return true;}
