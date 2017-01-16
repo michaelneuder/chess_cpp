@@ -14,6 +14,7 @@ using namespace std;
 void displayMenu(){
 	cout << "======Main Menu======" << endl;
 	cout << "1. make a move" << endl;
+	cout << "7. make a capture" << endl;
 	cout << "2. default board setup" << endl;
 	cout << "3. custom board setup" << endl;
 	cout << "4. print current board state" << endl;
@@ -92,6 +93,13 @@ void userInput(board myBoard){
 					cout << "Goodbye!" << endl;//end it
                 	break;
             	}
+
+            case 7: 
+            	{
+            		myBoard.capture();
+            		break;
+            	}
+            	
             default: 	// invalid input
             	{
                 	cout << "Invalid Input" << endl;

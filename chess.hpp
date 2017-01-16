@@ -17,6 +17,7 @@ class board{
 		
 		//user options
 		void move(int oldRow, int oldCol, int newRow, int newCol);
+		void capture();
 		void defaultBoard();
 		void setBoard();
 		void clearBoard();
@@ -34,11 +35,20 @@ class board{
 		void setRow(int rowVal);
 		bool checkMoveP();
 		void promote(int promoteColumn);
+		
+		bool checkMoveP(int oldRow, int oldCol, int newRow, int newCol);
 		bool checkMoveN();
 		bool checkMoveB();
 		bool checkMoveR();
 		bool checkMoveQ();
 		bool checkMoveK();
+
+		bool checkCaptureP();
+		bool checkCaptureN();
+		bool checkCaptureB();
+		bool checkCaptureR();
+		bool checkCaptureQ();
+		bool checkCaptureK();
 
 };
 

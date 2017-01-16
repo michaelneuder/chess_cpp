@@ -441,12 +441,29 @@ void board::promote(int promoteColumn){
 	} 
 }
 
-bool board::checkMoveP(){return true;}
+bool board::checkMoveP(int oldRow, int oldCol, int newRow, int newCol){
+	if(oldCol != newCol){
+		cout << "pawn moves must be in the same column" << endl;
+		return false;
+	}
+	return true;
+}
+
+void board::capture();//this needs work--similar to move but a capture
+
+
 bool board::checkMoveN(){return true;}
 bool board::checkMoveB(){return true;}
 bool board::checkMoveR(){return true;}
 bool board::checkMoveQ(){return true;}
 bool board::checkMoveK(){return true;}
+
+bool board::checkCaptureP(){return true;}
+bool board::checkCaptureN(){return true;}
+bool board::checkCaptureB(){return true;}
+bool board::checkCaptureR(){return true;}
+bool board::checkCaptureQ(){return true;}
+bool board::checkCaptureK(){return true;}
 
 
 
