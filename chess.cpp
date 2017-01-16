@@ -348,9 +348,6 @@ void board::writeToFile(string gameRecord){
 	myFile.open("untitled.txt");
 	myFile << gameRecord;//likely need to do some string parsing in here with sstream
 	myFile.close();
-
-
-
 }
 
 void board::move(int oldRow, int oldCol, int newRow, int newCol){
@@ -385,11 +382,17 @@ void board::move(int oldRow, int oldCol, int newRow, int newCol){
 		cout << "error, no piece type found for the square you requested a move for" << endl;
 	}
 
-	if(makeMove == true){
+	
+	if(makeMove and tempPieceType == "p"){
+		if(newRow == 7 or newRow == 0){
+			promote(newCol);
+			squares[oldRow][oldCol].pieceType = "-";
+		}
+	}else if(makeMove){
 		pieceData tempPiece = squares[oldRow][oldCol];
 		squares[newRow][newCol] = tempPiece;
 		squares[oldRow][oldCol].pieceType = "-";
-		if(newCol == 0){//this needs work -- figure out how to append a int onto a string
+		if(newCol == 0){
 			gameRecord =  gameRecord + squares[newRow][newCol].pieceType + "a" + to_string(newRow+1) + " "; 
 		}else if(newCol == 1){
 			gameRecord =  gameRecord + squares[newRow][newCol].pieceType + "b" + to_string(newRow+1) + " "; 
@@ -407,6 +410,35 @@ void board::move(int oldRow, int oldCol, int newRow, int newCol){
 			gameRecord =  gameRecord + squares[newRow][newCol].pieceType + "h" + to_string(newRow+1) + " "; 
 		}
 	}
+	else{
+		cout << "error: reached end of move function" << endl;
+	}
+}
+
+void board::promote(int promoteColumn){
+	//only called from a pawn movement
+	//change the notation of the promoted piece
+	cout << "enter the new piece type identifier (q,r,b, or n)" << endl;
+	string promotedPiece;
+	getline(cin, promotedPiece);
+	squares[7][promoteColumn].pieceType = promotedPiece;
+	if(promoteColumn == 0){
+		gameRecord =  gameRecord + squares[7][promoteColumn].pieceType + "a" + to_string(8) + " "; 
+	}else if(promoteColumn == 1){
+		gameRecord =  gameRecord + squares[7][promoteColumn].pieceType + "b" + to_string(8) + " "; 
+	}else if(promoteColumn == 2){
+		gameRecord =  gameRecord + squares[7][promoteColumn].pieceType + "c" + to_string(8) + " "; 
+	}else if(promoteColumn == 3){
+		gameRecord =  gameRecord + squares[7][promoteColumn].pieceType + "d" + to_string(8) + " "; 
+	}else if(promoteColumn == 4){
+		gameRecord =  gameRecord + squares[7][promoteColumn].pieceType + "e" + to_string(8) + " "; 
+	}else if(promoteColumn == 5){
+		gameRecord =  gameRecord + squares[7][promoteColumn].pieceType + "f" + to_string(8) + " "; 
+	}else if(promoteColumn == 6){
+		gameRecord =  gameRecord + squares[7][promoteColumn].pieceType + "g" + to_string(8) + " "; 
+	}else if(promoteColumn == 7){
+		gameRecord =  gameRecord + squares[7][promoteColumn].pieceType + "h" + to_string(8) + " "; 
+	} 
 }
 
 bool board::checkMoveP(){return true;}
@@ -415,23 +447,6 @@ bool board::checkMoveB(){return true;}
 bool board::checkMoveR(){return true;}
 bool board::checkMoveQ(){return true;}
 bool board::checkMoveK(){return true;}
-
-
-
-/*
-void piece::capture(){}
-
-void piece::setLocation(){}
-
-void board::promote(int promoteColumn){
-	//only called from a pawn movement
-	cout << "enter the new piece type identifier (q,r,b, or n)" << endl;
-	string promotedPiece;
-	getline(cin, promotedPiece);
-	squares[7][promoteColumn].pieceType = promotedPiece;
-}
-*/
-
 
 
 

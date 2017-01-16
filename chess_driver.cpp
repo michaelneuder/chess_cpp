@@ -18,7 +18,7 @@ void displayMenu(){
 	cout << "3. custom board setup" << endl;
 	cout << "4. print current board state" << endl;
 	cout << "5. create pgn file" << endl;
-	cout << "6. Quit" << endl;
+	cout << "6. quit" << endl;
 }
 
 void userInput(board myBoard){
