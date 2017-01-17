@@ -29,6 +29,7 @@ class board{
 		//void promote(int promoteColumn);
 	
 	private:
+		//organizing the board into rows, columns, and diagonals to check move legality
 		//dark square diagonals
 		pieceData *mainDiagonal[8];
 		pieceData *c1Diagonal[6];
@@ -68,6 +69,7 @@ class board{
 		pieceData *gRow[8];
 		pieceData *hRow[8];
 
+		//miscelaneous functions
 		void defaultBoardNoVerification();
 		void initializeSquareData();
 		bool verifyAction();
@@ -76,19 +78,21 @@ class board{
 		void setRow(int rowVal);
 		void promote(int promoteColumn);
 		
+		//checking legality of move functions
 		bool checkMoveP(int oldRow, int oldCol, int newRow, int newCol);
 		bool checkMoveN(int oldRow, int oldCol, int newRow, int newCol);
-		bool checkMoveB();
-		bool checkMoveR();
-		bool checkMoveQ();
-		bool checkMoveK();
+		bool checkMoveB(int oldRow, int oldCol, int newRow, int newCols);
+		bool checkMoveR(int oldRow, int oldCol, int newRow, int newCol);
+		bool checkMoveQ(int oldRow, int oldCol, int newRow, int newCol);
+		bool checkMoveK(int oldRow, int oldCol, int newRow, int newCol);
 
-		bool checkCaptureP();
-		bool checkCaptureN();
-		bool checkCaptureB();
-		bool checkCaptureR();
-		bool checkCaptureQ();
-		bool checkCaptureK();
+		//checking legality of captures, these should be called from the move functions
+		bool checkCaptureP(int oldRow, int oldCol, int newRow, int newCol);
+		bool checkCaptureN(int oldRow, int oldCol, int newRow, int newCol);
+		bool checkCaptureB(int oldRow, int oldCol, int newRow, int newCol);
+		bool checkCaptureR(int oldRow, int oldCol, int newRow, int newCol);
+		bool checkCaptureQ(int oldRow, int oldCol, int newRow, int newCol);
+		bool checkCaptureK(int oldRow, int oldCol, int newRow, int newCol);
 
 };
 

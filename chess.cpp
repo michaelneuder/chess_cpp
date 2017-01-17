@@ -16,6 +16,7 @@ board::board(){//constructor initializes the board to starting position
 }
 
 void board::initializeSquareData(){
+	//dark square diagonals
 	//initializing main diagonal pointers
 	mainDiagonal[0]= &squares[0][0];
 	mainDiagonal[1]= &squares[1][1];
@@ -25,6 +26,112 @@ void board::initializeSquareData(){
 	mainDiagonal[5]= &squares[5][5];
 	mainDiagonal[6]= &squares[6][6];
 	mainDiagonal[7]= &squares[7][7];
+
+	//initializing c1 diagonal
+	c1Diagonal[0] = &squares[0][2];
+	c1Diagonal[1] = &squares[1][3];
+	c1Diagonal[2] = &squares[2][4];
+	c1Diagonal[3] = &squares[3][5];
+	c1Diagonal[4] = &squares[4][6];
+	c1Diagonal[5] = &squares[5][7];
+
+	//initializing e1 diagonal
+	e1Diagonal[0] = &squares[0][4];
+	e1Diagonal[1] = &squares[1][5];
+	e1Diagonal[2] = &squares[2][6];
+	e1Diagonal[3] = &squares[3][7];
+
+	//initializing g1 diagonal
+	g1Diagonal[0] = &squares[0][6];
+	g1Diagonal[1] = &squares[1][7];
+
+	//initializing a3 diagonal
+	a3Diagonal[0] = &squares[2][0];
+	a3Diagonal[1] = &squares[3][1];
+	a3Diagonal[2] = &squares[4][2];
+	a3Diagonal[3] = &squares[5][3];
+	a3Diagonal[4] = &squares[6][4];
+	a3Diagonal[5] = &squares[7][5];
+
+	//initializing a5 diagonal
+	a5Diagonal[0] = &squares[4][0];
+	a5Diagonal[1] = &squares[5][1];
+	a5Diagonal[2] = &squares[6][2];
+	a5Diagonal[3] = &squares[7][3];
+
+	//initalizing a3 diagonal
+	a7Diagonal[0] = &squares[6][0];
+	a7Diagonal[0] = &squares[7][1];
+
+	//light square diagonals
+	//intializing b1 diagonal
+	b1Diagonal[0] = &squares[0][1];
+	b1Diagonal[1] = &squares[1][2];
+	b1Diagonal[2] = &squares[2][3];
+	b1Diagonal[3] = &squares[3][4];
+	b1Diagonal[4] = &squares[4][5];
+	b1Diagonal[5] = &squares[5][6];
+	b1Diagonal[6] = &squares[6][7];
+
+	//initializing d1 diagonal
+	d1Diagonal[0] = &squares[0][3];
+	d1Diagonal[1] = &squares[1][4];
+	d1Diagonal[2] = &squares[2][5];
+	d1Diagonal[3] = &squares[3][6];
+	d1Diagonal[4] = &squares[4][7];
+
+	//intitializing f1 diagonal
+	e1Diagonal[0] = &squares[0][5];
+	e1Diagonal[1] = &squares[1][6];
+	e1Diagonal[2] = &squares[2][7];
+
+	//initializing h1 diagonal
+	h1Diagonal[0] = &squares[0][7];
+
+	//initializing a2 diagonal
+	a2Diagonal[0] = &squares[1][0];
+	a2Diagonal[1] = &squares[2][1];
+	a2Diagonal[2] = &squares[3][2];
+	a2Diagonal[3] = &squares[4][3];
+	a2Diagonal[4] = &squares[5][4];
+	a2Diagonal[5] = &squares[6][5];
+	a2Diagonal[6] = &squares[7][6];
+
+	//initializing a4 diagonal
+	a4Diagonal[0] = &squares[3][0];
+	a4Diagonal[1] = &squares[4][1];
+	a4Diagonal[2] = &squares[5][2];
+	a4Diagonal[3] = &squares[6][3];
+	a4Diagonal[4] = &squares[7][4];
+
+	//initializing a6 diagonal
+	a6Diagonal[0] = &squares[5][0];
+	a6Diagonal[1] = &squares[6][1];
+	a6Diagonal[2] = &squares[7][2];
+
+	//initializing a8 diagonal
+	a8Diagonal[0] = &squares[7][0];
+
+	//initializing column and row data
+	for(int i=0;i<8;i++){
+		aColumn[i] = &squares[i][0];
+		bColumn[i] = &squares[i][1];
+		cColumn[i] = &squares[i][2];
+		dColumn[i] = &squares[i][3];
+		eColumn[i] = &squares[i][4];
+		fColumn[i] = &squares[i][5];
+		gColumn[i] = &squares[i][6];
+		hColumn[i] = &squares[i][7];
+
+		aRow[i] = &squares[0][i];
+		bRow[i] = &squares[1][i];
+		cRow[i] = &squares[2][i];
+		dRow[i] = &squares[3][i];
+		eRow[i] = &squares[4][i];
+		fRow[i] = &squares[5][i];
+		gRow[i] = &squares[6][i];
+		hRow[i] = &squares[7][i];
+	}
 }
 
 bool board::checkSquareEmpty(int row, int col){
@@ -461,11 +568,15 @@ void board::promote(int promoteColumn){
 }
 
 bool board::checkMoveP(int oldRow, int oldCol, int newRow, int newCol){
-	if(oldCol != newCol){
-		cout << "pawn moves must be in the same column" << endl;
-		return false;
+	if(checkSquareEmpty(newRow, newCol)){
+		if(oldCol != newCol){
+			cout << "pawn moves must be in the same column" << endl;
+			return false;
+		}
+		return true;
+	}else{
+		checkCaptureP(int oldRow, int oldCol, int newRow, int newCol);
 	}
-	return true;
 }
 
 bool board::checkMoveN(int oldRow, int oldCol, int newRow, int newCol){
@@ -489,12 +600,14 @@ bool board::checkMoveN(int oldRow, int oldCol, int newRow, int newCol){
 	}
 }
 
-bool board::checkMoveB(){
-	//maybe make a property of the board class that is the diagonals of the board
+bool board::checkMoveB(int oldRow, int oldCol, int newRow, int newCol){
+		
+
+
 	return true;
 }
 
-bool board::checkMoveR(){return true;}
+bool board::checkMoveR(int oldRow, int oldCol, int newRow, int newCol){return true;}
 
 void board::capture(int oldRow, int oldCol, int newRow, int newCol){
 	if(squares[newRow][newCol].pieceType == "-"){
@@ -509,15 +622,15 @@ void board::capture(int oldRow, int oldCol, int newRow, int newCol){
 	}
 }
 
-bool board::checkMoveQ(){return true;}
-bool board::checkMoveK(){return true;}
+bool board::checkMoveQ(int oldRow, int oldCol, int newRow, int newCol){return true;}
+bool board::checkMoveK(int oldRow, int oldCol, int newRow, int newCol){return true;}
 
-bool board::checkCaptureP(){return true;}
-bool board::checkCaptureN(){return true;}
-bool board::checkCaptureB(){return true;}
-bool board::checkCaptureR(){return true;}
-bool board::checkCaptureQ(){return true;}
-bool board::checkCaptureK(){return true;}
+bool board::checkCaptureP(int oldRow, int oldCol, int newRow, int newCol){return true;}
+bool board::checkCaptureN(int oldRow, int oldCol, int newRow, int newCol){return true;}
+bool board::checkCaptureB(int oldRow, int oldCol, int newRow, int newCol){return true;}
+bool board::checkCaptureR(int oldRow, int oldCol, int newRow, int newCol){return true;}
+bool board::checkCaptureQ(int oldRow, int oldCol, int newRow, int newCol){return true;}
+bool board::checkCaptureK(int oldRow, int oldCol, int newRow, int newCol){return true;}
 
 
 
