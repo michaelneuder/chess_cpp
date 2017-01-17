@@ -357,7 +357,7 @@ void board::writeToFile(string gameRecord){
 	myFile.close();
 }
 
-void board::move(int oldRow, int oldCol, int newRow, int newCol){
+void board::move(int oldRow, int oldCol, int newRow, int newCol){//*add some capture case
 	string tempPieceType;
 	bool makeMove = false;
 	tempPieceType = squares[oldRow][oldCol].pieceType;
@@ -478,7 +478,7 @@ bool board::checkMoveN(int oldRow, int oldCol, int newRow, int newCol){
 }
 
 bool board::checkMoveB(){
-	
+	//maybe make a property of the board class that is the diagonals of the board
 	return true;
 }
 
@@ -490,10 +490,11 @@ void board::capture(int oldRow, int oldCol, int newRow, int newCol){
 	}else if(squares[newRow][newCol].pieceColor == squares[oldRow][oldCol].pieceColor){
 		cout << "this piece is the same color! you cant capture it" << endl;
 	}else{
-		
+		cout << "piece captured!" << endl;
+		squares[newRow][newCol].pieceType = squares[oldRow][oldCol].pieceType;
+		squares[newRow][newCol].pieceColor = squares[oldRow][oldCol].pieceColor;
+		squares[oldRow][oldCol].pieceType = "-";
 	}
-
-
 }
 
 bool board::checkMoveQ(){return true;}
