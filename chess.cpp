@@ -477,10 +477,25 @@ bool board::checkMoveN(int oldRow, int oldCol, int newRow, int newCol){
 	}
 }
 
-void board::capture(){}//this needs work--similar to move but a capture
+bool board::checkMoveB(){
+	
+	return true;
+}
 
-bool board::checkMoveB(){return true;}
 bool board::checkMoveR(){return true;}
+
+void board::capture(int oldRow, int oldCol, int newRow, int newCol){
+	if(squares[newRow][newCol].pieceType == "-"){
+		cout << "this is not a capture, please call the move function" << endl;
+	}else if(squares[newRow][newCol].pieceColor == squares[oldRow][oldCol].pieceColor){
+		cout << "this piece is the same color! you cant capture it" << endl;
+	}else{
+		
+	}
+
+
+}
+
 bool board::checkMoveQ(){return true;}
 bool board::checkMoveK(){return true;}
 
