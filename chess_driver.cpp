@@ -96,7 +96,7 @@ void userInput(board myBoard){
 
             case 7: 
             	{
-            		myBoard.capture();
+            		//myBoard.capture();
             		break;
             	}
             	

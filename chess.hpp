@@ -30,45 +30,46 @@ class board{
 	
 	private:
 		//dark square diagonals
-		pieceData mainDiagonalB[8];
-		pieceData c1Diagonal[6];
-		pieceData e1Diagonal[4];
-		pieceData g1Diagonal[2];
-		pieceData a3Diagonal[6];
-		pieceData a5Diagonal[4];
-		pieceData a7Diagonal[2];
+		pieceData *mainDiagonal[8];
+		pieceData *c1Diagonal[6];
+		pieceData *e1Diagonal[4];
+		pieceData *g1Diagonal[2];
+		pieceData *a3Diagonal[6];
+		pieceData *a5Diagonal[4];
+		pieceData *a7Diagonal[2];
 
 		//white square diagonals
-		pieceData b1Diagonal[7];
-		pieceData d1Diagonal[5];
-		pieceData f1Diagonal[3];
-		pieceData h1Diagonal[1];
-		pieceData a2Diagonal[7];
-		pieceData a4Diagonal[5];
-		pieceData a6Diagonal[3];
-		pieceData a8Diagonal[1];
+		pieceData *b1Diagonal[7];
+		pieceData *d1Diagonal[5];
+		pieceData *f1Diagonal[3];
+		pieceData *h1Diagonal[1];
+		pieceData *a2Diagonal[7];
+		pieceData *a4Diagonal[5];
+		pieceData *a6Diagonal[3];
+		pieceData *a8Diagonal[1];
 
 		//column data
-		pieceData aColumn[8];
-		pieceData bColumn[8];
-		pieceData cColumn[8];
-		pieceData dColumn[8];
-		pieceData eColumn[8];
-		pieceData fColumn[8];
-		pieceData gColumn[8];
-		pieceData hColumn[8];
+		pieceData *aColumn[8];
+		pieceData *bColumn[8];
+		pieceData *cColumn[8];
+		pieceData *dColumn[8];
+		pieceData *eColumn[8];
+		pieceData *fColumn[8];
+		pieceData *gColumn[8];
+		pieceData *hColumn[8];
 
 		//row data
-		pieceData 1row[8];
-		pieceData 2row[8];
-		pieceData 3row[8];
-		pieceData 4row[8];
-		pieceData 5row[8];
-		pieceData 6row[8];
-		pieceData 7row[8];
-		pieceData 8row[8];
+		pieceData *aRow[8];
+		pieceData *bRow[8];
+		pieceData *cRow[8];
+		pieceData *dRow[8];
+		pieceData *eRow[8];
+		pieceData *fRow[8];
+		pieceData *gRow[8];
+		pieceData *hRow[8];
 
 		void defaultBoardNoVerification();
+		void initializeSquareData();
 		bool verifyAction();
 		bool checkSquareEmpty(int row, int col);
 		void setSquare(int row, int column);

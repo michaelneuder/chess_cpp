@@ -15,6 +15,18 @@ board::board(){//constructor initializes the board to starting position
 	cout << "board is set to starting position" << endl;
 }
 
+void board::initializeSquareData(){
+	//initializing main diagonal pointers
+	mainDiagonal[0]= &squares[0][0];
+	mainDiagonal[1]= &squares[1][1];
+	mainDiagonal[2]= &squares[2][2];
+	mainDiagonal[3]= &squares[3][3];
+	mainDiagonal[4]= &squares[4][4];
+	mainDiagonal[5]= &squares[5][5];
+	mainDiagonal[6]= &squares[6][6];
+	mainDiagonal[7]= &squares[7][7];
+}
+
 bool board::checkSquareEmpty(int row, int col){
 	if(squares[row][col].pieceType == "-"){
 		return true;
