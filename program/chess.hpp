@@ -69,6 +69,9 @@ class board{
 		pieceData *gRow[8];
 		pieceData *hRow[8];
 
+		//identify function
+		void identifyDiagonals(int row, int col);
+
 		//miscelaneous functions
 		void defaultBoardNoVerification();
 		void initializeSquareData();

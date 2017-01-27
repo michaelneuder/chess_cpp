@@ -109,7 +109,6 @@ void userInput(board myBoard){
     }
 }
 
-
 int main(){
 	board myBoard;
 	userInput(myBoard);

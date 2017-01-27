@@ -489,19 +489,19 @@ void board::move(int oldRow, int oldCol, int newRow, int newCol){//*add some cap
 			makeMove = true;
 		}
 	}else if (tempPieceType == "b"){
-		if (checkMoveB()){
+		if (checkMoveB(oldRow, oldCol, newRow, newCol)){
 			makeMove = true;
 		}
 	}else if (tempPieceType == "r"){
-		if (checkMoveR()){
+		if (checkMoveR(oldRow, oldCol, newRow, newCol)){
 			makeMove = true;
 		}
 	}else if (tempPieceType == "q"){
-		if (checkMoveQ()){
+		if (checkMoveQ(oldRow, oldCol, newRow, newCol)){
 			makeMove = true;
 		}
 	}else if (tempPieceType == "k"){
-		if (checkMoveK()){
+		if (checkMoveK(oldRow, oldCol, newRow, newCol)){
 			makeMove = true;
 		}
 	}else {//no piece type found
@@ -570,12 +570,16 @@ void board::promote(int promoteColumn){
 bool board::checkMoveP(int oldRow, int oldCol, int newRow, int newCol){
 	if(checkSquareEmpty(newRow, newCol)){
 		if(oldCol != newCol){
-			cout << "pawn moves must be in the same column" << endl;
+			cout << "pawn moves must be in the same column unless capturing" << endl;
 			return false;
 		}
 		return true;
 	}else{
-		checkCaptureP(int oldRow, int oldCol, int newRow, int newCol);
+		if (checkCaptureP(oldRow, oldCol, newRow, newCol)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
 
@@ -595,9 +599,54 @@ bool board::checkMoveN(int oldRow, int oldCol, int newRow, int newCol){
 		}
 	}
 	else{
-		cout << "this square is occupied! if you want to make a capture call the capture function." << endl;
+		if(checkCaptureN(oldRow, oldCol, newRow, newCol)){
+			capture(oldRow, oldCol, newRow, newCol);
+			return true;
+		}
 		return false;
 	}
+}
+
+bool board::checkCaptureN(int oldRow, int oldCol, int newRow, int newCol){
+	if(squares[oldRow][oldCol].pieceColor == squares[newRow][newCol].pieceColor){
+		cout << "you can't capture pieces of the same color" << endl;
+	}else if{
+		if((newCol == oldCol + 2) and (newRow == oldRow + 1 or newRow == oldRow - 1)){
+			return true;
+		}else if((newCol == oldCol + 1) and (newRow == oldRow + 2 or newRow == oldRow - 2)){
+			return true;
+		}else if((newCol == oldCol - 1) and (newRow == oldRow + 2 or newRow == oldRow - 2)){
+			return true;
+		}else if((newCol == oldCol - 2) and (newRow == oldRow + 1 or newRow == oldRow - 1)){
+			return true;
+		}else{
+			cout << "this is a non legal move for the knight. please enter a valid square." << endl;
+			return false;
+		}
+	}
+}
+
+int board::identifyDiagonals(int row, int col){
+	for (int i=0;i<8;i++){
+		if(squares[row][column] == mainDiagonal[i]) 
+			return 0;
+	}
+	pieceData *c1Diagonal[6];
+	pieceData *e1Diagonal[4];
+	pieceData *g1Diagonal[2];
+	pieceData *a3Diagonal[6];
+	pieceData *a5Diagonal[4];
+	pieceData *a7Diagonal[2];
+
+	//white square diagonals
+	pieceData *b1Diagonal[7];
+	pieceData *d1Diagonal[5];
+	pieceData *f1Diagonal[3];
+	pieceData *h1Diagonal[1];
+	pieceData *a2Diagonal[7];
+	pieceData *a4Diagonal[5];
+	pieceData *a6Diagonal[3];
+	pieceData *a8Diagonal[1];
 }
 
 bool board::checkMoveB(int oldRow, int oldCol, int newRow, int newCol){
@@ -626,7 +675,6 @@ bool board::checkMoveQ(int oldRow, int oldCol, int newRow, int newCol){return tr
 bool board::checkMoveK(int oldRow, int oldCol, int newRow, int newCol){return true;}
 
 bool board::checkCaptureP(int oldRow, int oldCol, int newRow, int newCol){return true;}
-bool board::checkCaptureN(int oldRow, int oldCol, int newRow, int newCol){return true;}
 bool board::checkCaptureB(int oldRow, int oldCol, int newRow, int newCol){return true;}
 bool board::checkCaptureR(int oldRow, int oldCol, int newRow, int newCol){return true;}
 bool board::checkCaptureQ(int oldRow, int oldCol, int newRow, int newCol){return true;}
